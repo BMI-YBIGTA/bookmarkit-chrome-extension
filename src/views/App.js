@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 import {
   accountAuth, accountProfile, accountLogout
-} from '../../actions/account';
-import { setEnabled, setStats } from '../../actions/marker';
+} from '../actions/account';
+import { setEnabled, setStats } from '../actions/marker';
 import Authed from './Authed';
 import Unauthed from './Unauthed';
 import './App.css';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Message } from 'semantic-ui-react';
-import { auth, fetchProfile } from '../../api';
+import { auth, fetchProfile } from '../api';
 
 export default class Unauthed extends Component {
   constructor(props) {
