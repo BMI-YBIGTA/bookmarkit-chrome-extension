@@ -7,6 +7,7 @@ import {
   accountLogout,
 } from "../actions/account";
 import { setEnabled, setStats } from "../actions/marker";
+import { setPageName } from "../actions/switchs";
 import Authed from "./Authed";
 import Unauthed from "./Unauthed";
 import "./App.css";
@@ -28,7 +29,7 @@ const App = (props) => {
 }
 
 const mapStateToProps = (state) =>
-  Object.assign({}, state.account, state.marker);
+  Object.assign({}, state.account, state.marker, state.switchs);
 
 const mapDispatchToProps = (dispatch) => ({
   accountAuth: (data) => {
@@ -46,6 +47,9 @@ const mapDispatchToProps = (dispatch) => ({
   setStats: (data) => {
     dispatch(setStats(data));
   },
+  setPageName: (data) => {
+    dispatch(setPageName(data));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
