@@ -5,8 +5,8 @@ import {
   accountAuth,
   accountProfile,
   accountLogout,
-} from "../../actions/account";
-import { setEnabled, setStats } from "../../actions/marker";
+} from "../actions/account";
+import { setEnabled, setStats } from "../actions/marker";
 import Authed from "./Authed";
 import Unauthed from "./Unauthed";
 import "./App.css";

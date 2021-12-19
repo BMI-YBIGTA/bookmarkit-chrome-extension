@@ -26,14 +26,6 @@ export default class Authed extends Component {
     })
   }
 
-  callModal = () => {
-    
-      SyncModal()
-      console.log()
-  }
-
-
-
   BookmarkService = Object.freeze({
 
     /** 북마크 트리를 가져옵니다. **/
@@ -64,15 +56,6 @@ export default class Authed extends Component {
           <Button floated='right' circular icon='sign out' onClick={this.onLogout} />
           <Button>북마크 등록</Button>
           <Button className='sync' onClick={this.onSync}>북마크 동기화</Button>
-          <Modal
-            header='Reminder!'
-            content='Call Benjamin regarding the reports.'
-            actions={['Snooze', { key: 'done', content: 'Done', positive: true }]}
-            open={open}
-            onOpen={()=>this.setState({open:true})}
-            onClose={()=>this.setState({open:false})}
-          />
-      
         </Container>
 
       </div>
