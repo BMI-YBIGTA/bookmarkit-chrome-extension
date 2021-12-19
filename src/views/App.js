@@ -11,22 +11,20 @@ import Authed from "./Authed";
 import Unauthed from "./Unauthed";
 import "./App.css";
 
-class App extends Component {
-  render() {
-    const { token } = this.props;
-    const View = token ? Authed : Unauthed;
-    //const View = Authed;
-    return (
-      <div className="App">
-        <Header as="h3" attached="top" textAlign="center" inverted color="teal">
-          Bookmarkit
-        </Header>
-        <div className="App-view">
-          <View {...this.props} />
-        </div>
+const App = (props) => {
+  const { token } = props;
+  const View = token ? Authed : Unauthed;
+  //const View = Authed;
+  return (
+    <div className="App">
+      <Header as="h3" attached="top" textAlign="center" inverted color="teal">
+        Bookmarkit
+      </Header>
+      <div className="App-view">
+        <View {...props} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = (state) =>
