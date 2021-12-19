@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Form, Message } from 'semantic-ui-react';
 import { auth, fetchProfile } from '../api';
 
-export default class Unauthed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {loading: false, message: false};
-  }
+const Unauthed  = (props) => {
+  const [state, setState] = useState({loading: false, message: false});
 
-  login = async (data) => {
-    const {accountAuth, accountProfile} = this.props;
-    this.setState({
+  const login = async (data) => {
+    const {accountAuth, accountProfile} = props;
+    setState({
       loading: true, message: false
     });
     let resp = data && await auth(data);
     const token = resp && resp.ok && resp.token;
-    this.setState({
+    setState({
       loading: false, message: !token && (resp.message || 'Unknown Error')
     });
     if (!token)
@@ -25,7 +22,7 @@ export default class Unauthed extends Component {
     resp && resp.ok && resp.data && accountProfile(resp.data);
   }
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const fields = e.target.elements;
     if (!fields)
@@ -36,24 +33,23 @@ export default class Unauthed extends Component {
       data[field.name] = field.value;
       b = true;
     }
-    b && this.login(data);
+    b && login(data);
   }
 
-  render () {
-    const { loading, message } = this.state;
-    return (
-      <Form onSubmit={this.onSubmit} loading={loading} error={Boolean(message)}>
-          <Form.Input
-            name="username" required
-            fluid icon='user' iconPosition='left' placeholder='Usernames'
-          />
-          <Form.Input
-            name="password" type='password' required
-            fluid icon='lock' iconPosition='left' placeholder='Password'
-          />
-          <Form.Button type="submit" fluid color='blue'>Log in</Form.Button>
-          {message && <Message error size='small' content={message} />}
-      </Form>
-    );
-  }
+  return (
+    <Form onSubmit={onSubmit} loading={state.loading} error={Boolean(state.message)}>
+        <Form.Input
+          name="username" required
+          fluid icon='user' iconPosition='left' placeholder='Usernames'
+        />
+        <Form.Input
+          name="password" type='password' required
+          fluid icon='lock' iconPosition='left' placeholder='Password'
+        />
+        <Form.Button type="submit" fluid color='blue'>Log in</Form.Button>
+        {state.message && <Message error size='small' content={state.message} />}
+    </Form>
+  );
 }
+
+export default Unauthed;

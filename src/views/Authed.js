@@ -1,43 +1,20 @@
-import React, { Component } from 'react';
-import {
-  Container, Segment, Button, Checkbox, Header, Icon, Label, Placeholder
-} from 'semantic-ui-react';
+import React, { useState } from 'react';
 import Register from './Register';
+import Home from './Home';
 
-export default class Authed extends Component {
-  onLogout = (e) => {
-    e.preventDefault();
-    const {accountLogout} = this.props;
-    accountLogout();
-  }
+const Authed = (props) => {
+  // console.log(props);
+  const { name, keywords, enabled, stats, pageName } = props;
+  const [state, setState] = useState({open: false});
 
-  onCheck = (e, { checked }) => {
-    e.preventDefault();
-    const {setEnabled, setStats} = this.props;
-    setEnabled(checked);
-    !checked && setStats(false);
-  }
-
-  onRegister = (e) => {
-    e.preventDefault();
-    return (
-      <div>
-        <Register />
-      </div>
-    )
-  }
-
-  render () {
-    const { name, keywords, enabled, stats } = this.props;
-    return (
-      <div>
-
-        <Container textAlign='center'>
-          <Button floated='right' circular icon='sign out' onClick={this.onLogout} />
-          <Button onClick={this.onRegister}>북마크 등록</Button>
-        </Container>
-
-      </div>
-    );
+  switch (pageName) {
+    case "Home":
+      return <Home {...props} />;
+    case "Register": 
+      return <Register {...props} />;
+    default:
+      return <div></div>;
   }
 }
+
+export default Authed;
