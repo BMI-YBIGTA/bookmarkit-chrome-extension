@@ -1,4 +1,4 @@
-# cra-rich-chrome-ext-example
+# cra-rich-chrome-ext-example dev
 
 An example of full-fledged, rich UI Chrome extension built with Create React App and Redux.
 
