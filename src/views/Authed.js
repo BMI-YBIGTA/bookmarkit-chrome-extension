@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Container, Segment, Button, Checkbox, Header, Icon, Label, Placeholder, Modal
+  Container, Segment, Button, Checkbox, Header, Icon, Label, Placeholder
 } from 'semantic-ui-react';
 import Register from './Register';
 
@@ -18,7 +18,7 @@ export default class Authed extends Component {
     !checked && setStats(false);
   }
 
-  onSync = (e) => {
+  onRegister = (e) => {
     e.preventDefault();
     this.BookmarkService.getListAboutTree().then(console.log);
     this.setState({
@@ -57,7 +57,6 @@ export default class Authed extends Component {
 
   render () {
     const { name, keywords, enabled, stats } = this.props;
-    const { open } = this.state;
     return (
       <div>
 
