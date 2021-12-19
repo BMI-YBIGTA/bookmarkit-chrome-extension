@@ -18,15 +18,13 @@
     ]
   }],
   "icons": {
-    "16": "icon-filled-16.png",
-    "32": "icon-filled-32.png",
-    "64": "icon-filled-64.png",
-    "128": "icon-filled-128.png"
+    "16": "16x16.png",
+    "48": "48x48.png",
+    "128": "128x128.png"
   },
   "browser_action": {
     "default_icon": {
-      "16": "icon-outlined-16.png",
-      "32": "icon-outlined-32.png"
+      "16": "16x16.png"
     },
     "default_title": "Keyword Marker",
     "default_popup": "popup.html"
