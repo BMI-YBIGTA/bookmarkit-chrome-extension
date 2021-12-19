@@ -30,36 +30,8 @@ export default class Authed extends Component {
         <Container textAlign='center'>
           <Button floated='left' circular icon='cog' onClick={this.onSettings} />
           <Button floated='right' circular icon='sign out' onClick={this.onLogout} />
-          <Checkbox toggle disabled={!keywords} defaultChecked={Boolean(enabled)} onChange={this.onCheck} />
+          <Button>북마크 등록</Button>
         </Container>
-
-        <Segment textAlign='center'>
-
-          {!name && !keywords &&
-          <Placeholder fluid>
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder>
-          }
-
-          {name &&
-          <Header as='h4'>
-            <Icon name='user' />{name}
-          </Header>
-          }
-
-          {keywords && keywords.map((v, i) =>
-            <Label color='red' tag>
-              {v}
-              {stats &&
-                <Label.Detail>{stats[i]}</Label.Detail>
-              }
-            </Label>
-          )}
-        
-        </Segment>
 
       </div>
     );

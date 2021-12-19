@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Keyword Marker",
-  "description": "A rich extension example: Marks specific keywords on specific (StackExchange) sites",
+  "name": "Bookmarkit",
+  "description": "__Ybigta_bookmarkit__",
   "version": "0.1",
   "permissions": [
-    "storage"
+    "storage",
+    "bookmarks"
   ],
   "background": {
     "scripts": ["static/js/background.js"],
@@ -26,7 +27,7 @@
     "default_icon": {
       "16": "16x16.png"
     },
-    "default_title": "Keyword Marker",
+    "default_title": "Bookmarkit",
     "default_popup": "popup.html"
   },
   "options_ui": {
