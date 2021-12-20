@@ -43,7 +43,9 @@ const Home = (props) => {
 
   const onSync = (e) => {
     e.preventDefault();
-    BookmarkService.getListAboutTree().then(console.log);
+    BookmarkService.getListAboutTree().then((data) => {
+      // API Call - TBD
+    });
     setState({
       open: true
     })
@@ -55,12 +57,22 @@ const Home = (props) => {
     setPageName("Register");
   }
 
+  const onRecommend = (e) => {
+
+  }
+
+  const onLinkBoard = (e) => {
+    chrome.tabs.create({url: 'http://www.naver.com'});
+  }
+
   return (
     <div>
       <Container textAlign='center'>
         <Button floated='right' circular icon='sign out' onClick={onLogout} />
         <Button onClick={onAdd}>북마크 등록</Button>
         <Button className='sync' onClick={onSync}>북마크 동기화</Button>
+        <Button onClick={onLinkBoard}>북마크 대시보드 이동</Button>
+        <Button className='recommend' onClick={onRecommend}>유사한 사이트 추천</Button>
       </Container>
     </div>
   );
