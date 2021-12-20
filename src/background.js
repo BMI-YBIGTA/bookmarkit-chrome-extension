@@ -12,16 +12,17 @@ const getStore = async () => {
   return store;
 };
 
-const iconVariants = [
-  {
-    '16' : 'icon-outlined-16.png',
-    '32' : 'icon-outlined-32.png'
-  },
-  {
-    '16' : 'icon-filled-16.png',
-    '32' : 'icon-filled-32.png'
-  }
-];
+// const iconVariants = [
+//   {
+//     '16' : 'icon-outlined-16.png',
+//     '32' : 'icon-outlined-32.png'
+//   },
+//   {
+//     '16' : 'icon-filled-16.png',
+//     '32' : 'icon-filled-32.png'
+//   }
+// ];
+
 const displayIcon = (store) => {
   const state = store.getState();
   const {account, marker} = state;
@@ -32,7 +33,7 @@ const displayIcon = (store) => {
   if (newIconHash === iconHash)
     return;
   store.dispatch(setIconHash(newIconHash));
-  chrome.browserAction.setIcon({path: iconVariants[token? 1: 0]});
+  // chrome.browserAction.setIcon({path: iconVariants[token? 1: 0]});
   chrome.browserAction.setBadgeText({text});
 };
 

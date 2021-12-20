@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import storeCreatorFactory from 'reduxed-chrome-storage';
 import reducers from './reducers';
 import 'semantic-ui-css/semantic.min.css';
-import App from './views/Popup/App';
+import App from './views/App';
 
 (async () => {
   const store = await storeCreatorFactory({createStore})(reducers);
