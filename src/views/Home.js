@@ -58,7 +58,9 @@ const Home = (props) => {
   }
 
   const onRecommend = (e) => {
-
+    e.preventDefault();
+    const {setPageName} = props;
+    setPageName("Recommend");
   }
 
   const onLinkBoard = (e) => {
