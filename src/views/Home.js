@@ -4,7 +4,6 @@ import {
 } from 'semantic-ui-react';
 
 const BookmarkService = Object.freeze({
-
   /** 북마크 트리를 가져옵니다. **/
   getTree () {
     return new Promise(resolve => {

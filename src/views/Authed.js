@@ -4,7 +4,7 @@ import Home from './Home';
 import Recommend from './Recommend';
 
 const Authed = (props) => {
-  // console.log(props);
+  console.log("authed");
   const { name, keywords, enabled, stats, pageName } = props;
   const [state, setState] = useState({open: false});
 
@@ -16,7 +16,7 @@ const Authed = (props) => {
     case "Recommend":
       return <Recommend {...props} />;
     default:
-      return <div></div>;
+      return <div>none</div>;
   }
 }
 
