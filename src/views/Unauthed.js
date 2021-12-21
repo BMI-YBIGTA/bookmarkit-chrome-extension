@@ -51,9 +51,10 @@ if(props.pageName === "SignUp") {
   return (
     <SignUp {...props}/>
   )
-} else if(props.pageName === "Unauthed") {
+} else {
  
     return (
+      <div style={{height: "100px"}}>
       <Form onSubmit={onSubmit} loading={state.loading} error={Boolean(state.message)}>
           <Form.Input
             name="username" required
@@ -68,6 +69,7 @@ if(props.pageName === "SignUp") {
           {state.message && <Message error size='small' content={state.message} />}
           
       </Form>
+      </div>
     );
   }
 }

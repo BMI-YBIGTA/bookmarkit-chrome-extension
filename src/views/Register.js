@@ -28,7 +28,7 @@ const Register = (props) => {
       <Header as='h3'>북마크 추가</Header>
       <Form.Field>
         <label>이름</label>
-        <Input placeholder={document.title} onChange={onChange}/>
+        <Input value={document.title} onChange={onChange}/>
       </Form.Field>
       <Button type='submit' onClick={onRegister}>등록</Button>
       <Button type="cancel" onClick={onCancel}>취소</Button>

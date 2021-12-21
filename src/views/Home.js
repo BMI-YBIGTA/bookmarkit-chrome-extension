@@ -69,11 +69,11 @@ const Home = (props) => {
   return (
     <div>
       <Container textAlign='center'>
-        <Button floated='right' circular icon='sign out' onClick={onLogout} />
-        <Button onClick={onAdd}>북마크 등록</Button>
-        <Button className='sync' onClick={onSync}>북마크 동기화</Button>
-        <Button onClick={onLinkBoard}>북마크 대시보드 이동</Button>
-        <Button className='recommend' onClick={onRecommend}>유사한 사이트 추천</Button>
+        <Button onClick={onAdd} style={{marginTop:"10px", width:"180px"}}>북마크 등록</Button>
+        <Button className='sync' onClick={onSync} style={{marginTop:"10px",width:"180px"}}>북마크 동기화</Button>
+        <Button onClick={onLinkBoard} style={{marginTop:"10px",width:"180px"}}>대시보드 이동</Button>
+        <Button className='recommend' onClick={onRecommend} style={{marginTop:"10px",width:"180px"}}>유사한 사이트 추천</Button>
+        <Button floated='right' circular icon='sign out' onClick={onLogout} style={{marginTop:"10px"}}/>
       </Container>
     </div>
   );
