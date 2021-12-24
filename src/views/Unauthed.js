@@ -1,11 +1,23 @@
 import React, { Component, useState } from 'react';
 import { Form, Message } from 'semantic-ui-react';
-import { auth, fetchProfile } from '../api';
+import { auth, fetchProfile, userSignIn } from '../api';
 import SignUp from './SignUp';
 
 const Unauthed  = (props) => {
-  console.log("unauthed");
+  
   const [state, setState] = useState({loading: false, message: false});
+
+  const [email, setEmail] = useState("");
+
+  const [pw, setPw] = useState("")
+
+  const onChangeEmail = (e, data) => {
+    setEmail(data.value);
+  }
+
+  const onChangePw = (e, data) => {
+    setPw(data.value);
+  }
 
   const login = async (data) => {
     const {accountAuth, accountProfile} = props;
@@ -47,6 +59,11 @@ const Unauthed  = (props) => {
     setPageName("SignUp");
   }
 
+  const onSignIn = (e) => {
+    e.preventDefault();
+    userSignIn(email, pw);
+  }
+
 if(props.pageName === "SignUp") {
   return (
     <SignUp {...props}/>
@@ -57,15 +74,15 @@ if(props.pageName === "SignUp") {
       <div style={{height: "100px"}}>
       <Form onSubmit={onSubmit} loading={state.loading} error={Boolean(state.message)}>
           <Form.Input
-            name="username" required
-            fluid icon='user' iconPosition='left' placeholder='Usernames'
+            name="username" required onChange={onChangeEmail}
+            fluid icon='user' iconPosition='left' placeholder='e-mail'
           />
           <Form.Input
-            name="password" type='password' required
-            fluid icon='lock' iconPosition='left' placeholder='Password'
+            name="password" type='password' required onChange={onChangePw}
+            fluid icon='lock' iconPosition='left' placeholder='비밀번호'
           />
-          <Form.Button type="submit" fluid color='blue'>Log in</Form.Button>
-          <Form.Button fluid color='blue' onClick={onSignUp}>Sign Up</Form.Button>
+          <Form.Button type="submit" fluid color='blue' >로그인</Form.Button>
+          <Form.Button fluid color='blue' onClick={onSignUp}>회원가입</Form.Button>
           {state.message && <Message error size='small' content={state.message} />}
           
       </Form>
