@@ -95,7 +95,7 @@ export async function registerBookmark(pageTitle) {
   
   let queryOptions = {active: true, currentWindow: true};
   
-  chrome.tabs.query(queryOptions, function(tabs) {
+  chrome.tabs.query(queryOptions, async function(tabs) {
     var tab = tabs[0];
     var url = tab.url;
     console.log(url);
@@ -112,8 +112,6 @@ export async function registerBookmark(pageTitle) {
     } catch(e) {
       console.log(e);
     }
-
-    
   })
   
 }
