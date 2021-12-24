@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
-  Container, Button
+  Container, Button, Modal, Icno
 } from 'semantic-ui-react';
+import { syncBookmark, getCurrentURL } from '../api';
 
 const BookmarkService = Object.freeze({
-
   /** 북마크 트리를 가져옵니다. **/
   getTree () {
     return new Promise(resolve => {
@@ -26,12 +27,17 @@ const BookmarkService = Object.freeze({
 const Home = (props) => {
   console.log(props);
   // const { name, keywords, enabled, stats, pageName } = props;
-  const [state, setState] = useState({open: false});
+  const [open, setOpen] = useState(false);
 
   const onLogout = (e) => {
     e.preventDefault();
     const {accountLogout} = props;
     accountLogout();
+  }
+
+  const onOpen = (e) => {
+    e.preventDefault();
+    setOpen(true);
   }
 
   // const onCheck = (e, { checked }) => {
@@ -41,12 +47,13 @@ const Home = (props) => {
   //   !checked && setStats(false);
   // }
 
-  const onSync = (e) => {
+  const onSync = async(e) => {
     e.preventDefault();
-    BookmarkService.getListAboutTree().then(console.log);
-    setState({
-      open: true
-    })
+    BookmarkService.getListAboutTree().then((data) => {
+      // API Call - TBD
+      console.log(data);
+      syncBookmark(data);
+    });
   }
 
   const onAdd = (e) => {
@@ -55,12 +62,33 @@ const Home = (props) => {
     setPageName("Register");
   }
 
+  const onRecommend = (e) => {
+    e.preventDefault();
+    const {setPageName} = props;
+    setPageName("Recommend");
+  }
+
+  const onLinkBoard = (e) => {
+    chrome.tabs.create({url: 'http://www.naver.com'});
+  }
+
   return (
     <div>
       <Container textAlign='center'>
-        <Button floated='right' circular icon='sign out' onClick={onLogout} />
-        <Button onClick={onAdd}>북마크 등록</Button>
-        <Button className='sync' onClick={onSync}>북마크 동기화</Button>
+        <Button onClick={onAdd} style={{marginTop:"10px", width:"180px"}}>북마크 등록</Button>
+        <Button className='sync' onClick={onOpen} style={{marginTop:"10px",width:"180px"}}>북마크 동기화</Button>
+        <Modal
+            header='동기화'
+            content='북마크를 동기화하시겠습니까?'
+            actions={[{key: 'yes', content: '웅', positive: true, icon: "checkmark", onClick: onSync}, 
+                      { key: 'done', content: '아닝', icon: 'remove', color: "red", onClick: {}}]}
+            open={open}
+            onOpen={()=>setOpen(true)}
+            onClose={()=>setOpen(false)}
+          />
+        <Button onClick={onLinkBoard} style={{marginTop:"10px",width:"180px"}}>대시보드 이동</Button>
+        <Button className='recommend' onClick={onRecommend} style={{marginTop:"10px",width:"180px"}}>유사한 사이트 추천</Button>
+        <Button floated='right' circular icon='sign out' onClick={onLogout} style={{marginTop:"10px"}}/>
       </Container>
     </div>
   );
