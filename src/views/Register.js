@@ -1,11 +1,12 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import { Header, Button, Input, Form } from 'semantic-ui-react';
+import { registerBookmark } from '../api';
 
 
 
 const Register = (props) => {
   const [pageTitle, setPageTitle] = useState(document.title);
-  var link = document.location.href;
 
   const onCancel = (e) => {
     e.preventDefault();
@@ -13,14 +14,14 @@ const Register = (props) => {
     setPageName("Home");
   }
 
-  const onChange = (e, data) => {
+  const onChange = async (e, data) => {
     e.preventDefault();
     setPageTitle(data.value);
-    
+
   }
 
-  const onRegister = (e) => {
-    console.log(link, pageTitle);
+  const onRegister = (pageTitle) => {
+    registerBookmark(pageTitle);
   }
 
   return (

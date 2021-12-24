@@ -75,29 +75,45 @@ export const userSignIn = async(id, pw) => {
   }
 }
 
-export const registerBookmark = async() => {
-  try {
-    const response = await axios.post()
-
-  }
-  catch(e) {
-    console.log(e);
-  }
+export async function syncBookmark(data) {
+  data.forEach(async (tab)=> {
+    try {
+      await api.post("/api/memberbookmark", 
+        {
+          title: tab.title,
+          link: tab.url,
+          header: tab.title
+        }
+      )
+    } catch(e) {
+      console.log(e);
+    }
+  })
 }
 
-export async function syncBookmark(data) {
+export async function registerBookmark(pageTitle) {
   
   let queryOptions = {active: true, currentWindow: true};
   
   chrome.tabs.query(queryOptions, function(tabs) {
     var tab = tabs[0];
     var url = tab.url;
-    
     console.log(url);
     console.log(tab.title)
-    
-    
 
+    try {
+      await api.post("/api/bookmark",
+        {
+          title: pageTitle,
+          link: url,
+          header: tab.title
+        }
+      )
+    } catch(e) {
+      console.log(e);
+    }
+
+    
   })
   
 }
