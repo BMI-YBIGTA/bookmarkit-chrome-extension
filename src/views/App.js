@@ -9,7 +9,12 @@ import Unauthed from './Unauthed';
 import './App.css';
 
 const App = (props) => {
-  const [loginState, setLoginState] = useState(false);
+  const [loginState, setLoginState] = useState(
+    window.localStorage.getItem('userInfoEx') !== null ||
+      window.localStorage.getItem('userInfoEx') !== undefined
+      ? true
+      : false
+  );
   const { token } = props;
   const View = loginState ? Authed : Unauthed;
   //const View = Authed;

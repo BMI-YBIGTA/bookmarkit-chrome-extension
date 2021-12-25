@@ -40,7 +40,7 @@ const SignUp = (props) => {
   const onSignUp = () => {
     userSignUp(id, pw, name, () => {
       const { setPageName } = props;
-      setPageName('Home');
+      setPageName('Unauthed');
     });
   };
 
