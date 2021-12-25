@@ -4,20 +4,20 @@ import Home from './Home';
 import Recommend from './Recommend';
 
 const Authed = (props) => {
-  console.log("authed");
+  console.log('authed');
   const { name, keywords, enabled, stats, pageName } = props;
-  const [state, setState] = useState({open: false});
+  const [state, setState] = useState({ open: false });
 
   switch (pageName) {
-    case "Home":
+    case 'Home':
       return <Home {...props} />;
-    case "Register": 
+    case 'Register':
       return <Register {...props} />;
-    case "Recommend":
+    case 'Recommend':
       return <Recommend {...props} />;
     default:
-      return <div>none</div>;
+      return <Home {...props} />;
   }
-}
+};
 
 export default Authed;
