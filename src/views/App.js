@@ -10,8 +10,8 @@ import './App.css';
 
 const App = (props) => {
   const [loginState, setLoginState] = useState(
-    window.localStorage.getItem('userInfoEx') !== null ||
-      window.localStorage.getItem('userInfoEx') !== undefined
+    window.localStorage.getItem('userInfoEx') != null ||
+      window.localStorage.getItem('userInfoEx') != undefined
       ? true
       : false
   );
