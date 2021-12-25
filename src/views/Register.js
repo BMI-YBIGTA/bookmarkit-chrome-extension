@@ -20,7 +20,7 @@ const Register = (props) => {
 
   }
 
-  const onRegister = (pageTitle) => {
+  const onRegister = () => {
     registerBookmark(pageTitle);
   }
 

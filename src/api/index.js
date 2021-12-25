@@ -37,6 +37,7 @@ export const userSignUp = async (id, pw, username, callback) => {
       name: username,
     });
     callback();
+    console.log(response.data)
   } catch (e) {
     console.log(e);
   }
@@ -53,6 +54,7 @@ export const userSignIn = async (id, pw, callback) => {
       JSON.stringify(response.data.result)
     );
     callback();
+    console.log(response.data)
   } catch (e) {
     console.log(e);
   }
@@ -61,19 +63,20 @@ export const userSignIn = async (id, pw, callback) => {
 export async function syncBookmark(data) {
   data.forEach(async (tab) => {
     try {
-      await api.post('/api/memberbookmark', {
+      const response = await api.post('/api/memberbookmark', {
         title: tab.title,
         link: tab.url,
-        header: tab.title,
       });
+      console.log(response.data)
     } catch (e) {
       console.log(e);
     }
   });
 }
 
-export async function registerBookmark(pageTitle) {
+export function registerBookmark(pageTitle) {
   let queryOptions = { active: true, currentWindow: true };
+  const token = JSON.parse(window.localStorage.getItem('userInfoEx')).token
 
   chrome.tabs.query(queryOptions, async function (tabs) {
     var tab = tabs[0];
@@ -82,11 +85,16 @@ export async function registerBookmark(pageTitle) {
     console.log(tab.title);
 
     try {
-      await api.post('/api/bookmark', {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      console.log("1",axios.defaults.headers.common["Authorization"])
+      console.log("2",token)
+      console.log("3",pageTitle)
+      
+      const response = await api.post('/api/memberbookmark', {
         title: pageTitle,
-        link: url,
-        header: tab.title,
+        link: url
       });
+      console.log(response.data)
     } catch (e) {
       console.log(e);
     }
